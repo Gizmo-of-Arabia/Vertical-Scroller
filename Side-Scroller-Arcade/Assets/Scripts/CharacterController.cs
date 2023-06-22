@@ -192,14 +192,14 @@ public class CharacterController : MonoBehaviour
 
     /* NOTES ON ANIMATING MOVEMENT:
      * Vertical movement states:
-     * 1. Speeding up from 0 -> Jet boost (up) or jet cut (down).
+     * 1. Speeding up -> Jet boost (up) or jet cut (down).
      * 2. Turning Around from "+" to "-" -> Jet cut + air brakes.
      * 3. Turning around from "-" to "+" -> Jet blast / bigger boost.
      */
 
     /*
      * Some Horizontal movement states:
-     * 1. Speeding up from 0 -> 45 degree roll.
+     * 1. Speeding up -> 45 degree roll.
      * 2. Turning Around -> 90 degree roll.
      * 
     */
