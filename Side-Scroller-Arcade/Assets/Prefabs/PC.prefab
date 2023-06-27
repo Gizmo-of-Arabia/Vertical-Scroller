@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6724366812218280833}
   - component: {fileID: 6724366812218280832}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Art
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 6724366812616252445}
   - component: {fileID: 6724366812616252442}
   - component: {fileID: 6724366812616252443}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,12 +133,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentRawVelocity: {x: 0, y: 0}
   targetRawVelocity: {x: 0, y: 0}
-  speedMultiplier: 5
+  speedMultiplier: 2
   movementState_x: 0
   movementState_y: 0
   accelerationRate: 2
-  decelerationRate: 2
-  turnRate: 2
+  decelerationRate: 1.5
+  turnRate: 2.5
 --- !u!50 &6724366812616252442
 Rigidbody2D:
   serializedVersion: 4
