@@ -12,6 +12,8 @@ public class CharacterController : MonoBehaviour
 {
     [Header("Components")]
     private Rigidbody2D playerRigidbody2D;
+    [SerializeField] private Animator animator;
+
 
     [Header("Velocity Calculations")]
     [SerializeField] private Vector2 currentRawVelocity;
@@ -73,7 +75,7 @@ public class CharacterController : MonoBehaviour
 
     private void Update()
     {
-
+        SetHorizontalAnimatorBools();
     }
 
     private void FixedUpdate()
@@ -190,19 +192,35 @@ public class CharacterController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Sets animation conditions based on Inputs.
+    /// </summary>
+    private void SetHorizontalAnimatorBools()
+    {
+        if (targetRawVelocity.x < 0f)
+        {
+            animator.SetBool("IsMovingLeft", true);
+        }
+        else
+        {
+            animator.SetBool("IsMovingLeft", false);
+        }
+        if (targetRawVelocity.x > 0f)
+        {
+            animator.SetBool("IsMovingRight", true);
+        }
+        else
+        {
+            animator.SetBool("IsMovingRight", false);
+        }
+
+    }
+
     /* NOTES ON ANIMATING MOVEMENT:
      * Vertical movement states:
      * 1. Speeding up -> Jet boost (up) or jet cut (down).
-     * 2. Turning Around from "+" to "-" -> Jet cut + air brakes.
+     * 2. Turning Around from "+" to "-" -> Jet cut
      * 3. Turning around from "-" to "+" -> Jet blast / bigger boost.
      */
-
-    /*
-     * Some Horizontal movement states:
-     * 1. Speeding up -> 45 degree roll.
-     * 2. Turning Around -> 90 degree roll.
-     * 
-    */
-
 
 }
