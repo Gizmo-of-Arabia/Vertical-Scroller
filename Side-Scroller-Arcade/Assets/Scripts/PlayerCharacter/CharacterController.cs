@@ -12,7 +12,9 @@ public class CharacterController : MonoBehaviour
 {
     [Header("Components")]
     private Rigidbody2D playerRigidbody2D;
-    [SerializeField] private Animator animator;
+    [SerializeField] private Animator bodyAnimator;
+    [SerializeField] private Animator afterburnerAnimator;
+
 
 
     [Header("Velocity Calculations")]
@@ -76,6 +78,7 @@ public class CharacterController : MonoBehaviour
     private void Update()
     {
         SetHorizontalAnimatorBools();
+        SetVerticalAnimatorBools();
     }
 
     private void FixedUpdate()
@@ -193,27 +196,49 @@ public class CharacterController : MonoBehaviour
     }
 
     /// <summary>
-    /// Sets animation conditions based on Inputs.
+    /// Sets animation conditions based on Inputs for movement along the X axis.
     /// </summary>
     private void SetHorizontalAnimatorBools()
     {
         if (targetRawVelocity.x < 0f)
         {
-            animator.SetBool("IsMovingLeft", true);
+            bodyAnimator.SetBool("IsMovingLeft", true);
         }
         else
         {
-            animator.SetBool("IsMovingLeft", false);
+            bodyAnimator.SetBool("IsMovingLeft", false);
         }
         if (targetRawVelocity.x > 0f)
         {
-            animator.SetBool("IsMovingRight", true);
+            bodyAnimator.SetBool("IsMovingRight", true);
         }
         else
         {
-            animator.SetBool("IsMovingRight", false);
+            bodyAnimator.SetBool("IsMovingRight", false);
         }
+    }
 
+    /// <summary>
+    /// Sets animation conditions based on Inputs for movement along the Y axis.
+    /// </summary>
+    private void SetVerticalAnimatorBools()
+    {
+        if (targetRawVelocity.y < 0f)
+        {
+            afterburnerAnimator.SetBool("IsMovingDown", true);
+        }
+        else
+        {
+            afterburnerAnimator.SetBool("IsMovingDown", false);
+        }
+        if (targetRawVelocity.y > 0f)
+        {
+            afterburnerAnimator.SetBool("IsMovingUp", true);
+        }
+        else
+        {
+            afterburnerAnimator.SetBool("IsMovingUp", false);
+        }
     }
 
     /* NOTES ON ANIMATING MOVEMENT:
