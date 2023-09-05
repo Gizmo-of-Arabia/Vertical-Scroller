@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
-using UnityEditor.Rendering.LookDev;
 
 /// <summary>
 /// Controls movement of the player character based on input data.
