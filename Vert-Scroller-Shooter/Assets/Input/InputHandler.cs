@@ -10,6 +10,8 @@ using UnityEngine.Events;
 /// Event type that effectively holds a 2D vector, for the purpose of manipulating 2D movement inputs.
 /// </summary>
 [Serializable] public class MoveInputEvent : UnityEvent<float, float> { };
+[Serializable] public class ResetInputEvent : UnityEvent { };
+
 
 
 /// <summary>
@@ -19,7 +21,7 @@ public class InputHandler : MonoBehaviour
 {
     private Controls _controls;
     public MoveInputEvent OnMoveInputPerformed;
-    //public MoveInputEvent OnMoveInputCanceled;
+    public ResetInputEvent OnResetInputPerformed;
 
 
 
@@ -35,9 +37,12 @@ public class InputHandler : MonoBehaviour
     private void OnEnable()
     {
         _controls.Movement.Enable();
+        _controls.Special.Enable();
 
         _controls.Movement.Move.performed += InvokeOnMoveInputPerformed;
         _controls.Movement.Move.canceled += InvokeOnMoveInputPerformed;
+
+        _controls.Special.Reset.performed += InvokeOnResetInputPerformed;
 
 
 
@@ -61,9 +66,13 @@ public class InputHandler : MonoBehaviour
     private void OnDisable()
     {
         _controls.Movement.Disable();
+        _controls.Special.Disable();
 
         _controls.Movement.Move.performed -= InvokeOnMoveInputPerformed;
         _controls.Movement.Move.canceled -= InvokeOnMoveInputPerformed;
+
+        _controls.Special.Reset.performed -= InvokeOnResetInputPerformed;
+
 
 
     }
@@ -72,6 +81,11 @@ public class InputHandler : MonoBehaviour
     private void InvokeOnMoveInputPerformed(InputAction.CallbackContext context)
     {
         OnMoveInputPerformed.Invoke(context.ReadValue<Vector2>().x, context.ReadValue<Vector2>().y);
+    }
+
+    private void InvokeOnResetInputPerformed(InputAction.CallbackContext context)
+    {
+        OnResetInputPerformed.Invoke();
     }
 
 }

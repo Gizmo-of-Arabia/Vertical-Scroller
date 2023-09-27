@@ -224,6 +224,9 @@ GameObject:
   - component: {fileID: 6724366812616252445}
   - component: {fileID: 6724366812616252442}
   - component: {fileID: 6724366812616252443}
+  - component: {fileID: 3993195047267566693}
+  - component: {fileID: 7402319847874668455}
+  - component: {fileID: 6089415986540334538}
   m_Layer: 6
   m_Name: PC
   m_TagString: Untagged
@@ -270,6 +273,8 @@ MonoBehaviour:
   accelerationRate: 1
   decelerationRate: 3
   turnRate: 3.2
+  canTeleport: 0
+  teleportDestination: {x: 1.47, y: 0}
 --- !u!50 &6724366812616252442
 Rigidbody2D:
   serializedVersion: 4
@@ -399,3 +404,71 @@ PolygonCollider2D:
       - {x: -0.16540766, y: -0.44644764}
       - {x: -0.0000974834, y: -0.44775918}
   m_UseDelaunayMesh: 0
+--- !u!114 &3993195047267566693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6724366812616252446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a295c7fbc28ce3b4ab6a727558adff29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7402319847874668455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6724366812616252446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52fa02b85345d1b4c85a316af1f48602, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  typedEvent: {fileID: 11400000, guid: ffcca710ac8378b428fc6ce0b2def41b, type: 2}
+  typedResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3993195047267566693}
+        m_TargetAssemblyTypeName: OutOfBoundsController, Assembly-CSharp
+        m_MethodName: DoOutOfBoundsNotice
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6089415986540334538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6724366812616252446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52fa02b85345d1b4c85a316af1f48602, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  typedEvent: {fileID: 11400000, guid: ffcca710ac8378b428fc6ce0b2def41b, type: 2}
+  typedResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6724366812616252445}
+        m_TargetAssemblyTypeName: CharacterController, Assembly-CSharp
+        m_MethodName: DoSetCanTeleport
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

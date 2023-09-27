@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using Unity.VisualScripting;
 
 /// <summary>
 /// Controls movement of the player character based on input data.
@@ -30,6 +31,10 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private float accelerationRate;
     [SerializeField] private float decelerationRate;
     [SerializeField] private float turnRate;
+
+    [Header("Teleportation")]
+    [SerializeField] private bool canTeleport;
+    [SerializeField] private Vector2 teleportDestination;
 
 
 
@@ -107,10 +112,9 @@ public class CharacterController : MonoBehaviour
     /// <param name="y">y value in a Vector2 "input"</param>
     public void DoSetVelocityTarget(float x, float y)
     {
-        targetRawVelocity.x = x; 
+        targetRawVelocity.x = x;
         targetRawVelocity.y = y;
     }
-
 
     /// <summary>
     /// Calculates the new raw velocity for a specific axis, based on which state the movement is in.
@@ -238,6 +242,25 @@ public class CharacterController : MonoBehaviour
         {
             afterburnerAnimator.SetBool("IsMovingUp", false);
         }
+    }
+
+    /// <summary>
+    /// Sets canTeleport to the opposite of isInBounds. There's no point teleporting if PC is already in bounds.
+    /// </summary>
+    /// <param name="isInBounds">Sets canTeleport to the opposite of this.</param>
+    public void DoSetCanTeleport(bool isInBounds)
+    {
+        canTeleport = !isInBounds;
+        //Debug.Log(canTeleport);
+    }
+
+    /// <summary>
+    /// Teleports the object to teleportDestination (Vec2), but only if the canTeleport flag is set to true.
+    /// </summary>
+    public void DoTeleportToCenter()
+    {
+        if (!canTeleport) return;
+        transform.position = teleportDestination;
     }
 
 }
