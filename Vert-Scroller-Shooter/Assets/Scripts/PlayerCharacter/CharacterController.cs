@@ -37,6 +37,13 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private Vector2 teleportDestination;
 
 
+    /// <summary>
+    /// [0] - base state collider
+    /// [1] - moving left collider
+    /// [2] - moving right collider
+    /// </summary>
+    [Header("Colliders")]
+    [SerializeField] private List<PolygonCollider2D> Colliders; 
 
 
 
@@ -83,6 +90,7 @@ public class CharacterController : MonoBehaviour
     {
         SetHorizontalAnimatorBools();
         SetVerticalAnimatorBools();
+        ToggleProperCollder();
     }
 
     private void FixedUpdate()
@@ -241,6 +249,39 @@ public class CharacterController : MonoBehaviour
         else
         {
             afterburnerAnimator.SetBool("IsMovingUp", false);
+        }
+    }
+
+    /// <summary>
+    /// Ensures that only the appropriate collider is enabled depending on which way we're leaning.
+    /// </summary>
+    private void ToggleProperCollder()
+    {
+        if (targetRawVelocity.x < 0f)
+        {
+            Colliders[1].enabled = true;
+        }
+        else
+        {
+            Colliders[1].enabled = false;
+        }
+
+        if (targetRawVelocity.x > 0f)
+        {
+            Colliders[2].enabled = true;
+        }
+        else
+        {
+            Colliders[2].enabled = false;
+        }
+
+        if (Colliders[1].enabled || Colliders[2].enabled)
+        {
+            Colliders[0].enabled = false;
+        } 
+        else
+        {
+            Colliders[0].enabled = true;
         }
     }
 
