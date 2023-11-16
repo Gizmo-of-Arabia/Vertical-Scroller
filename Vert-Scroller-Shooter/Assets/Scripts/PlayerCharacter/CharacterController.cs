@@ -44,7 +44,12 @@ public class CharacterController : MonoBehaviour
     /// </summary>
     [Header("Colliders")]
     [SerializeField] private List<PolygonCollider2D> Colliders;
-    [SerializeField] private ColliderState currentColliderState;
+
+    private PolygonCollider2D mainCollider;
+    private Vector2[] colliderPointsNormal;
+    private Vector2[] colliderPointsLeanLeft;
+    private Vector2[] colliderPointsLeanRight;
+
 
 
 
@@ -64,23 +69,13 @@ public class CharacterController : MonoBehaviour
         Turning,
     }
 
-    /// <summary>
-    /// Helps decide which collider variant to enable.
-    /// </summary>
-    private enum ColliderState
-    {
-        Normal,
-        LeanLeft,
-        LeanRight,
-    }
-
-
     /* */
 
 
     private void Awake()
     {
         playerRigidbody2D = GetComponent<Rigidbody2D>();
+        mainCollider = GetComponent<PolygonCollider2D>();
     }
 
 
@@ -93,6 +88,10 @@ public class CharacterController : MonoBehaviour
 
     private void Start()
     {
+        colliderPointsNormal = Colliders[0].points;
+        colliderPointsLeanLeft = Colliders[1].points;
+        colliderPointsLeanRight = Colliders[2].points;
+
 
     }
 
@@ -268,44 +267,17 @@ public class CharacterController : MonoBehaviour
     /// </summary>
     private void ToggleProperCollder()
     {
-        // setting the serialized enum for easier debugging
         if (targetRawVelocity.x < 0f)
         {
-            currentColliderState = ColliderState.LeanLeft;
+            mainCollider.points = colliderPointsLeanLeft;
         }
         else if (targetRawVelocity.x > 0f)
         {
-            currentColliderState = ColliderState.LeanRight;
+            mainCollider.points = colliderPointsLeanRight;
         }
         else
         {
-            currentColliderState = ColliderState.Normal;
-        }
-
-
-
-
-        // enabling proper collider, disabling others
-        if (currentColliderState == ColliderState.Normal)
-        {
-            Colliders[0].enabled = true;
-
-            Colliders[1].enabled = false;
-            Colliders[2].enabled = false;
-        } 
-        else if (currentColliderState == ColliderState.LeanLeft)
-        {
-            Colliders[1].enabled = true;
-
-            Colliders[0].enabled = false;
-            Colliders[2].enabled = false;
-        }
-        else if (currentColliderState == ColliderState.LeanRight)
-        {
-            Colliders[2].enabled = true;
-
-            Colliders[0].enabled = false;
-            Colliders[1].enabled = false;
+            mainCollider.points = colliderPointsNormal;
         }
 
 
