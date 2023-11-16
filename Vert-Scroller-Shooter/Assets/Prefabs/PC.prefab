@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1738861564879543007
 Transform:
   m_ObjectHideFlags: 0
@@ -39,7 +39,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1060729834537951150}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -370,7 +370,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5372974711754798550
 Transform:
   m_ObjectHideFlags: 0
@@ -393,7 +393,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3700700483982070156}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -713,7 +713,6 @@ GameObject:
   - component: {fileID: 6724366812616252447}
   - component: {fileID: 6724366812616252445}
   - component: {fileID: 6724366812616252442}
-  - component: {fileID: 3993195047267566693}
   - component: {fileID: 7402319847874668455}
   - component: {fileID: 6089415986540334538}
   m_Layer: 6
@@ -796,18 +795,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &3993195047267566693
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6724366812616252446}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a295c7fbc28ce3b4ab6a727558adff29, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7402319847874668455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -824,7 +811,7 @@ MonoBehaviour:
   typedResponse:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3993195047267566693}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: OutOfBoundsController, Assembly-CSharp
         m_MethodName: DoOutOfBoundsNotice
         m_Mode: 0

@@ -43,7 +43,9 @@ public class CharacterController : MonoBehaviour
     /// [2] - moving right collider
     /// </summary>
     [Header("Colliders")]
-    [SerializeField] private List<PolygonCollider2D> Colliders; 
+    [SerializeField] private List<PolygonCollider2D> Colliders;
+    [SerializeField] private ColliderState currentColliderState;
+
 
 
 
@@ -62,6 +64,15 @@ public class CharacterController : MonoBehaviour
         Turning,
     }
 
+    /// <summary>
+    /// Helps decide which collider variant to enable.
+    /// </summary>
+    private enum ColliderState
+    {
+        Normal,
+        LeanLeft,
+        LeanRight,
+    }
 
 
     /* */
@@ -257,33 +268,50 @@ public class CharacterController : MonoBehaviour
     /// </summary>
     private void ToggleProperCollder()
     {
+        // setting the serialized enum for easier debugging
         if (targetRawVelocity.x < 0f)
         {
-            Colliders[1].enabled = true;
+            currentColliderState = ColliderState.LeanLeft;
+        }
+        else if (targetRawVelocity.x > 0f)
+        {
+            currentColliderState = ColliderState.LeanRight;
         }
         else
         {
+            currentColliderState = ColliderState.Normal;
+        }
+
+
+
+
+        // enabling proper collider, disabling others
+        if (currentColliderState == ColliderState.Normal)
+        {
+            Colliders[0].enabled = true;
+
+            Colliders[1].enabled = false;
+            Colliders[2].enabled = false;
+        } 
+        else if (currentColliderState == ColliderState.LeanLeft)
+        {
+            Colliders[1].enabled = true;
+
+            Colliders[0].enabled = false;
+            Colliders[2].enabled = false;
+        }
+        else if (currentColliderState == ColliderState.LeanRight)
+        {
+            Colliders[2].enabled = true;
+
+            Colliders[0].enabled = false;
             Colliders[1].enabled = false;
         }
 
-        if (targetRawVelocity.x > 0f)
-        {
-            Colliders[2].enabled = true;
-        }
-        else
-        {
-            Colliders[2].enabled = false;
-        }
 
-        if (Colliders[1].enabled || Colliders[2].enabled)
-        {
-            Colliders[0].enabled = false;
-        } 
-        else
-        {
-            Colliders[0].enabled = true;
-        }
+
     }
+    
 
     /// <summary>
     /// Sets canTeleport to the opposite of isInBounds. There's no point teleporting if PC is already in bounds.
