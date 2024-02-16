@@ -1,3 +1,4 @@
+using RyanHipplesArchitecture.SO_Variables;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,10 +14,17 @@ public class UpdateTarget : MonoBehaviour
     // MARKER FOR DEBUGGING ONLY
     public Transform MarkerTransform;
 
+    [SerializeField] private IntVariable playerCharacterLayer;
+
     private void OnTriggerStay2D(Collider2D collision)
     {
-        MarkerTransform.position = DetectedTargetPosition;
+        if (collision.gameObject.layer != playerCharacterLayer.Value) return;
+
+
         DetectedTargetPosition = collision.transform.position;
+        MarkerTransform.position = DetectedTargetPosition;
+
+        Debug.Log(collision.gameObject.name);
 
     }
 

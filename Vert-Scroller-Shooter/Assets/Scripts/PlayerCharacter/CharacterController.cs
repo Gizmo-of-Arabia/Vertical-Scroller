@@ -100,7 +100,6 @@ public class CharacterController : MonoBehaviour
     {
         SetHorizontalAnimatorBools();
         SetVerticalAnimatorBools();
-        ToggleProperCollder();
     }
 
     private void FixedUpdate()
@@ -114,6 +113,8 @@ public class CharacterController : MonoBehaviour
 
 
         playerRigidbody2D.velocity = currentRawVelocity * speedMultiplier;
+
+        ToggleProperCollider();
 
     }
 
@@ -265,7 +266,7 @@ public class CharacterController : MonoBehaviour
     /// <summary>
     /// Ensures that only the appropriate collider is enabled depending on which way we're leaning.
     /// </summary>
-    private void ToggleProperCollder()
+    private void ToggleProperCollider()
     {
         if (targetRawVelocity.x < 0f)
         {
