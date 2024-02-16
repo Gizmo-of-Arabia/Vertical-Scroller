@@ -390,7 +390,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnIsInBounds_true: {fileID: 11400000, guid: ffcca710ac8378b428fc6ce0b2def41b, type: 2}
-  playerCharacterLayer: {fileID: 11400000, guid: 60b0716c5f2cc0944bd312ce340d80fc, type: 2}
+  playerCharacterLayer: {fileID: 11400000, guid: b3785279c8cd51d42b5ac11beedef898, type: 2}
 --- !u!61 &500832277
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -888,7 +888,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnIsInBounds_false: {fileID: 11400000, guid: ffcca710ac8378b428fc6ce0b2def41b, type: 2}
-  playerCharacterLayer: {fileID: 11400000, guid: 60b0716c5f2cc0944bd312ce340d80fc, type: 2}
+  playerCharacterLayer: {fileID: 11400000, guid: b3785279c8cd51d42b5ac11beedef898, type: 2}
 --- !u!1 &840416504
 GameObject:
   m_ObjectHideFlags: 0
@@ -1561,6 +1561,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Missile
       objectReference: {fileID: 0}
+    - target: {fileID: 4219873291257801851, guid: 7d56285617d6e5f4d837b5d5b71c76ab, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4219873291257801852, guid: 7d56285617d6e5f4d837b5d5b71c76ab, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.095
@@ -1605,6 +1609,10 @@ PrefabInstance:
       propertyPath: speed
       value: 0.8
       objectReference: {fileID: 0}
+    - target: {fileID: 7790811541028007803, guid: 7d56285617d6e5f4d837b5d5b71c76ab, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1618,6 +1626,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6724366812616252445, guid: 5dc5772908d5ff04299645a350bb3a6b, type: 3}
+      propertyPath: speedMultiplier
+      value: 1.9
+      objectReference: {fileID: 0}
     - target: {fileID: 6724366812616252446, guid: 5dc5772908d5ff04299645a350bb3a6b, type: 3}
       propertyPath: m_Name
       value: PC
